@@ -1,0 +1,57 @@
+{% extends "dappx/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+  <div class="container-full">
+      <div class="clear">
+          <div class="col-12 col-12-desktop col-12-hd col-12-tablet" align="center">
+              <img src="https://account.tamin.ir/auth/view/login/source/images/logo.png">
+          </div>
+      </div>
+      <div class="clear">
+          <div class="col-12 col-8-tablet col-5-desktop col-5-hd center-element">
+              <div class="login">
+                  {% if registered %}
+                    <h1>ثبت نام کاربری کامل گردید</h1>
+                  {% else %}
+                  <h1>لطفا ثبت نام کاربری نمایید</h1>
+                  <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <p>
+                        <label for="username">نام کاربری</label><br>
+                        <input type="text" name="username" placeholder="Username">
+                    </p>
+                    <p>
+                        <label for="last_name">نام فامیل</label><br>
+                        <input type="text" name="last_name" placeholder="last_name">
+                    </p>
+                    <p>
+                        <label for="password">گذرواژه</label><br>
+                        <input type="password" name="password" placeholder="Password">
+                    </p>
+                    <p>
+                        <label for="email">ایمیل</label><br>
+                        <input type="email" name="email" placeholder="email">
+                    </p>
+                    <p class="submit"><input type="submit" name="" value="ثبت نام" style="padding-left: 34px;"></p>
+                  </form>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+    <!-- <div class="jumbotron">
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register Here</h1>
+        <h3>Just fill out the form.</h3>
+<form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" value="Register">
+        </form>
+        
+      {% endif %}
+    </div> -->
+  </div>
+{% endblock %}

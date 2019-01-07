@@ -1,0 +1,601 @@
+{% extends "dappx/base.html" %}
+{% block body_block %}
+<div class="container">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    table tfoot th {
+          color: #585858;
+          padding: .8em .5em;
+          border-bottom: 1px solid black;
+          border: 1px solid black;
+    }
+    .td-rowsapn {
+      border: 1px solid;
+    }
+    .input-radio {     
+      size: 26px;
+      width: 20px;
+      height: 30px;
+      padding-top: 26px;
+      border-top-width: 28px;
+      align-items: center;
+      margin-left: 30%;  
+    }
+    
+  </style>
+  <div class="jumbotron">
+    <h1>به وب سایت نظر سنجی تامین خوش آمدید</h1>
+    </br>
+    {% if user.is_authenticated %}
+    <h2>{{ user.username }} همکار گرامی</h2>
+    <p>
+      با عرض سلام پرسش نامه‌‌ای که در پیش رو دارید مربوط به سنجش رضایت شغلی کارکنان سازمان تامین اجتماعی می‌باشد از
+      آنجا که پاسخ‌‌‌های شما می‌تواند در شناسایی نقاط قوت و ضعف عوامل سازمانی موثر باشد خواهشمند است با دقت و صادقانه
+      این پرسش‌نامه را تکمیل نمائید. ضمنا مطمئن باشید که پاسخ‌‌‌های شما محرمانه خواهد ماند.
+    </p>
+    <form method="post" action="{% url 'dappx:submit_questionary' %}">
+        {% csrf_token %}
+    <table width="706">
+      <tbody>
+        <tr>
+          <td width="45">
+            <p><strong>خیلی کم</strong></p>
+          </td>
+          <td width="54">
+            <p><strong>کم</strong></p>
+          </td>
+          <td width="65">
+            <p><strong>متوسط</strong></p>
+          </td>
+          <td width="48">
+            <p><strong>زیاد</strong></p>
+          </td>
+          <td width="49">
+            <p><strong>بسیار زیاد</strong></p>
+          </td>
+          <td width="349">
+            <p><strong>شرح سوال</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="68">
+            <p><strong>متغیر شغلی</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <input type="radio" checked="checked" name="question-1" value="very-bad" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+            
+          <td width="54">
+            <input type="radio" checked="checked" name="question-1" value="bad" class="input-radio" style="padding: 26px; margin-left: 30%;"/>
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="65">
+            <input type="radio" checked="checked" name="question-1" value="avarage" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="48">
+            <input type="radio" checked="checked" name="question-1" value="good" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="49">
+            <input type="radio" checked="checked" name="question-1" value="very-good" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="349">
+            <p><strong>میزان توجه مدیران به رشد و ارتقا زیر دستان</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>1</strong></p>
+          </td>
+          <td rowspan="3" width="68" class="td-rowsapn">
+            <p><strong>رضایت از سبک مدیریت</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <input type="radio" checked="checked" value="very-bad" name="question-2" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="54">
+            <input type="radio" checked="checked" value="bad" name="question-2" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="65">
+            <input type="radio" checked="checked" value="avarage" name="question-2" class="input-radio" style="padding: 26px; margin-left: 30%;"/>     
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="48">
+            <input type="radio" checked="checked" value="good" name="question-2" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="49">
+            <input type="radio" checked="checked" value="very-good" name="question-2" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+            <p><strong>&nbsp;</strong></p>
+          </td>
+          <td width="349">
+            <p><strong>میزان تفویض اختیار به شما در انجام کار</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>2</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+              <input type="radio" checked="checked" value="very-bad" name="question-3" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+              <p><strong>&nbsp;</strong></p>
+            </td>
+            <td width="54">
+              <input type="radio" checked="checked" value="bad" name="question-3" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+              <p><strong>&nbsp;</strong></p>
+            </td>
+            <td width="65">
+              <input type="radio" checked="checked" value="avarage" name="question-3" class="input-radio" style="padding: 26px; margin-left: 30%;"/>     
+              <p><strong>&nbsp;</strong></p>
+            </td>
+            <td width="48">
+              <input type="radio" checked="checked" value="good" name="question-3" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+              <p><strong>&nbsp;</strong></p>
+            </td>
+            <td width="49">
+              <input type="radio" checked="checked" value="very-good" name="question-3" class="input-radio" style="padding: 26px; margin-left: 30%;"/>    
+              <p><strong>&nbsp;</strong></p>
+            </td>
+          <td width="349">
+            <p><strong>میزان تعهد خالصانه مدیران در مورد خواسته های شما</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>3</strong></p>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p><strong>&nbsp;</strong></p>
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان تاثیر دوره های آموزشی بر&nbsp; ارتقا عملکرد شغلی کارکنان</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>4</strong></p>
+          </td>
+          <td rowspan="4" width="68" class="td-rowsapn">
+            <p><strong>رضایت از</strong></p>
+            <p><strong>آموزش شغلی</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان تاثیر دوره های آموزشی &nbsp;بر&nbsp; خلاقیت&nbsp; شما در انجام کار</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>5</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>کیفیت محتوا&nbsp; های دوره های آموزشی سازمان</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>6</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>کیفیت نحوه&nbsp; برگزاری دوره های آموزشی</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>7</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>انجام شغل شما نیاز مند مهارت های متنوعی می باشد</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>8</strong></p>
+          </td>
+          <td rowspan="4" width="68" class="td-rowsapn">
+            <p><strong>&nbsp;</strong></p>
+            <p><strong>رضایت از محتوای شغلی</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>شما در انجام وظایف&nbsp; آزادی عمل و استقلال دارید </strong></p>
+          </td>
+          <td width="28">
+            <p><strong>9</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>پس از انجام وظایف شغلی احساس موثر بودن می کنید</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>10</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>کار شما با معنی و با محتوا است</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>11</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>وجود یک فضای مبتنی بر اعتماد متقابل در محل کار</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>12</strong></p>
+          </td>
+          <td rowspan="4" width="68" class="td-rowsapn">
+            <p><strong>جو کار و کیفیت ارتباط با&nbsp; همکاران</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>وجود شبكه های همکاری ، و استفاده از گروه&zwnj;هاي حمايتي در انجام کارها</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>13</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان تشنج و استرس در محيط كاري</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>14</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>وجود روحیه گروهی را و میزان&nbsp; همبستگی بین همکاران</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>15</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>کیفیت تجهیزات انجام شغل</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>16</strong></p>
+          </td>
+          <td rowspan="3" width="68" class="td-rowsapn">
+            <p><strong>&nbsp;</strong></p>
+            <p><strong>&nbsp;</strong></p>
+            <p><strong>امکانات فیزیکی محل کار</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>کیفیت وسایل و تجهیزات رفاهی محل انجام کار</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>17</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان توجه مسولان به مسایل بهداشت، سلامت و پاکیزه بودن محل انجام کار</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>18</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان عادلانه بودن حقوق و دستمزد</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>19</strong></p>
+          </td>
+          <td rowspan="3" width="68" class="td-rowsapn">
+            <p><strong>&nbsp;</strong></p>
+            <p><strong>حقوق، دستمزد ، پاداش و مزایا</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>میزان کیفیت خدمات درمانی و رفاهی به کارکنان</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>20</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45">
+            <p>&nbsp;</p>
+          </td>
+          <td width="54">
+            <p>&nbsp;</p>
+          </td>
+          <td width="65">
+            <p>&nbsp;</p>
+          </td>
+          <td width="48">
+            <p>&nbsp;</p>
+          </td>
+          <td width="49">
+            <p>&nbsp;</p>
+          </td>
+          <td width="349">
+            <p><strong>مناسب بودن مبالغ انگیزشی و جبران عملکرد در قالب پاداش و مزایا</strong></p>
+          </td>
+          <td width="28">
+            <p><strong>21</strong></p>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <p class="submit"><input type="submit" name="" value="ثبت نظر" style="padding-left: 41px;padding-bottom: 7px;"></p>
+  </form>
+    {% else %}
+    <h2>لطفا ثبت نام یا لاگین کنید</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

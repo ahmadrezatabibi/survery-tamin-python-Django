@@ -1,0 +1,38 @@
+{% extends 'dappx/base.html' %}
+{% block body_block %}
+  <div class="container-full">
+      <div class="clear">
+          <div class="col-12 col-12-desktop col-12-hd col-12-tablet" align="center">
+              <img src="https://account.tamin.ir/auth/view/login/source/images/logo.png">
+          </div>
+      </div>
+      <div class="clear">
+          <div class="col-12 col-8-tablet col-5-desktop col-5-hd center-element">
+              <div class="login">
+                  <h1>ورود به سیستم</h1>
+                  <ul class="errorMessages animate fade-in-down">
+                      
+                  </ul>
+                  <ul class="warningMessages animate fade-in-down"></ul>
+                  <form method="post" action="{% url 'dappx:user_login' %}">
+                      {% csrf_token %}
+                      {# A more "HTML" way of creating the login form#}
+                      <p>
+                          <label for="username">نام کاربری</label><br>
+                          <input type="text" name="username" placeholder="Username">
+                      </p>
+  
+                      <p>
+                          <label for="password">گذرواژه</label><br>
+                          <input type="password" name="password" placeholder="Password">
+                      </p>
+                      
+                      <div class="separator"></div>
+                      <p class="submit"><input type="submit" name="" value="ورود"></p>
+                  </form>
+  
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

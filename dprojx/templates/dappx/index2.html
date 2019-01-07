@@ -1,0 +1,17 @@
+{% extends "dappx/base.html" %}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>به وب سایت نظر سنجی تامین خوش آمدید</h1>
+    </br>
+    {% if user.is_authenticated %}
+        <h2>{{ user.username }} همکار گرامی</h2>
+        <p>
+           there you goo!!!.
+        </p>
+    {% else %}
+        <h2>لطفا ثبت نام یا لاگین کنید</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
